@@ -83,13 +83,23 @@ local ItemsTabClass = newClass("ItemsTab", "UndoHandler", "ControlHost", "Contro
 	end)
 
 	-- Price Items
-	self.controls.priceDisplayItem = new("ButtonControl", {"TOPLEFT",self,"TOPLEFT"}, 96, 32, 310, 20, "Trade for these items", function()
+	self.controls.priceDisplayItem = new("ButtonControl", {"TOPLEFT",self,"TOPLEFT"}, 96, 32, 155, 20, "Trade for these items", function()
 		self.tradeQuery:PriceItem()
 	end)
 	self.controls.priceDisplayItem.tooltipFunc = function(tooltip)
 		tooltip:Clear()
 		tooltip:AddLine(16, "^7Contains searches from the official trading site to help find")
 		tooltip:AddLine(16, "^7similar or better items for this build")
+	end
+
+	-- Find items price and poe trade urls
+	self.controls.autoPriceDisplayItem = new("ButtonControl", {"TOPLEFT",self,"TOPLEFT"}, 251, 32, 155, 20, "Get prices and urls", function()
+		self.tradeQuery:PriceSlotItem()
+	end)
+	self.controls.autoPriceDisplayItem.tooltipFunc = function(tooltip)
+		tooltip:Clear()
+		tooltip:AddLine(16, "^7Fetches the cheapest prices from the official trading site")
+		tooltip:AddLine(16, "^7and add urls so you can fetch them yourself")
 	end
 
 	-- Item slots
